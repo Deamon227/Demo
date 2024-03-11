@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="get" action="/task/search">
+    <p>Search task:</p>
+    <input type="text" name="search">
+    <button>search</button>
+</form>
+<h1>Spring task</h1>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+    </tr>
+    <tbody th:each="ta:${task}">
+    <tr>
+        <td th:text="${ta.id}"></td>
+        <td th:text="${ta.name}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
