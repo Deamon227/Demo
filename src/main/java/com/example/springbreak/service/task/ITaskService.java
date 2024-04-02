@@ -5,4 +5,5 @@ import com.example.springbreak.service.IGeneratedService;
 
 public interface ITaskService extends IGeneratedService<Task> {
     Iterable<Task> findAllByNameContaining(String search);
+
 }

@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @Controller
 @CrossOrigin("*")
 @RequestMapping("/api/task")
@@ -38,14 +40,22 @@ public class ApiTaskController {
     public ResponseEntity<Task> delete(@PathVariable Long id){
         if (taskService.findById(id).isPresent()) {
             taskService.deleteById(id);
-            return new ResponseEntity<>(HttpStatus.MOVED_PERMANENTLY);
+            return new ResponseEntity<>(HttpStatus.OK);
         }else{
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
     @GetMapping("/search")
     public ResponseEntity<Iterable<Task>> searchKey(@RequestParam String key){
         Iterable<Task> found = taskService.findAllByNameContaining(key);
         return new ResponseEntity<>(found, HttpStatus.FOUND);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Optional<Task>> findById(@PathVariable Long id){
+         Optional<Task> t = taskService.findById(id);
+        return new ResponseEntity<>(t, HttpStatus.OK);
+    }
+
 }

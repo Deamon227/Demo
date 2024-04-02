@@ -8,4 +8,5 @@ import org.springframework.stereotype.Service;
 @Service
 public interface ITypeService extends IGeneratedService<Type> {
     Iterable<CountTask> countTaskNo();
+    Iterable<Type> findByNameContaining(String search);
 }

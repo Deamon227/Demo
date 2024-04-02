@@ -36,4 +36,9 @@ public class TypeService implements ITypeService{
     public Iterable<CountTask> countTaskNo() {
         return typeRepository.countNumberTask();
     }
+
+    @Override
+    public Iterable<Type> findByNameContaining(String search) {
+        return typeRepository.findByNameContaining(search);
+    }
 }

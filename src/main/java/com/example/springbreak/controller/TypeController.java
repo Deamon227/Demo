@@ -40,7 +40,7 @@ public class TypeController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-    @PostMapping("/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Type> delete(@PathVariable Long id){
         if (typeService.findById(id).isPresent()) {
             typeService.deleteById(id);
@@ -53,5 +53,10 @@ public class TypeController {
     public ResponseEntity<Iterable<CountTask>> countTask(){
        Iterable<CountTask> t = typeService.countTaskNo();
         return new ResponseEntity<>(t, HttpStatus.OK);
+    }
+    @GetMapping("/search")
+    public ResponseEntity<Iterable<Type>> searchType(@RequestParam String key){
+        Iterable<Type> ty = typeService.findByNameContaining(key);
+        return new ResponseEntity<>(ty, HttpStatus.OK);
     }
 }
