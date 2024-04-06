@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 @Transactional
 public interface ITypeRepository extends JpaRepository<Type, Long> {
-    @Query(nativeQuery = true, value = "select ty.name, count(t.name) as taskNo from type ty join task t where ty.id = t.type group by ty.name;")
+    @Query(nativeQuery = true, value = "select ty.name, count(t.name) as taskNo from type ty left join task t on ty.id = t.type group by ty.name;")
     Iterable <CountTask> countNumberTask();
     @Modifying
     @Query(nativeQuery = true, value = "call checkDeleteType(:id);")

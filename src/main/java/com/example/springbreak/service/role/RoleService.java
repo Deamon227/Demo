@@ -1,5 +1,6 @@
 package com.example.springbreak.service.role;
 
+import com.example.springbreak.model.dto.CountUserPerRole;
 import com.example.springbreak.model.entity.Role;
 import com.example.springbreak.repository.IRoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +29,10 @@ public class RoleService implements IRoleService{
     @Override
     public void deleteById(Long id) {
         roleRepository.deleteById(id);
+    }
+
+    @Override
+    public Iterable<CountUserPerRole> countRoleByUser() {
+        return roleRepository.countRoleByUser();
     }
 }
